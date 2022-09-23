@@ -22,7 +22,7 @@ if __name__ == '__main__':
     session_orm = Session()
 
 #  fill database
-    with open('tests_data.json', 'r') as f:
+    with open('fixtures/tests_data.json', 'r') as f:
         json_data = json.load(f)
         for line in json_data:
             model = {
