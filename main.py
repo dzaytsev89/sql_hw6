@@ -39,11 +39,19 @@ if __name__ == '__main__':
     while True:
         pub = input('Please enter Publisher id or Publisher name or exit to stop: ')
         if pub.isdigit():
-            for q in session_orm.query(Publisher).filter(Publisher.id == int(pub)):
+            for q in session_orm.query(Shop).\
+                    join(Stock, Shop.id == Stock.id_shop).\
+                    join(Book, Stock.id_book == Book.id).\
+                    join(Publisher, Book.id_publisher == Publisher.id).\
+                    filter(Publisher.id == int(pub)):
                 print(q)
         elif pub == 'exit':
             break
         else:
-            for q in session_orm.query(Publisher).filter(Publisher.name == pub):
+            for q in session_orm.query(Shop).\
+                    join(Stock, Shop.id == Stock.id_shop).\
+                    join(Book, Stock.id_book == Book.id).\
+                    join(Publisher, Book.id_publisher == Publisher.id).\
+                    filter(Publisher.name == pub):
                 print(q)
     session_orm.close()

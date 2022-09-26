@@ -16,7 +16,7 @@ class Publisher(Base):
     name = sql.Column(sql.VARCHAR(length=60), unique=True)
 
     def __str__(self):
-        return f'id: {self.id}, Publisher: {self.name}'
+        return f'Publisher_id: {self.id}, Publisher name: {self.name}'
 
 
 class Shop(Base):
@@ -26,7 +26,7 @@ class Shop(Base):
     name = sql.Column(sql.VARCHAR(length=60), unique=True)
 
     def __str__(self):
-        return f'{self.id}, Shop: {self.name}'
+        return f'Shop_id: {self.id}, Shop_name: {self.name}.'
 
 
 class Book(Base):
@@ -39,7 +39,7 @@ class Book(Base):
     publisher = relationship(Publisher, backref="book")
 
     def __str__(self):
-        return f'{self.id}, Book title: {self.title}, publisher: {self.publisher_id}'
+        return f'Book_id: {self.id}, Book title: {self.title}, publisher_id: {self.id_publisher}'
 
 
 class Stock(Base):
@@ -54,7 +54,7 @@ class Stock(Base):
     shop = relationship(Shop, backref="stock")
 
     def __str__(self):
-        return f'{self.id}, id_book: {self.id_book}, id_shop: {self.id_shop}, count: {self.count}'
+        return f'Stock_id: {self.id}, id_book: {self.id_book}, id_shop: {self.id_shop}, count: {self.count}'
 
 
 class Sale(Base):
@@ -69,5 +69,5 @@ class Sale(Base):
     stock = relationship(Stock, backref="stock")
 
     def __str__(self):
-        return f'{self.id} sale_price: {self.price},' \
+        return f'Sale_id: {self.id} sale_price: {self.price},' \
                f' id_stock: {self.id_stock}, count: {self.count}, date_sale: {self.date_sale}'
